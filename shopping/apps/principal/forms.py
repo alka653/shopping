@@ -7,8 +7,8 @@ from django import forms
 from .models import *
 
 class LoginForm(forms.Form):
-	username = forms.CharField(label = 'Usuario')
-	password = forms.CharField(widget = forms.PasswordInput, label = 'Contraseña')
+	username = forms.CharField(label = 'Usuario', widget = forms.TextInput(attrs = {'placeholder': 'Ingrese su usuario'}))
+	password = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder': 'Ingrese su contraseña'}), label = 'Contraseña')
 
 class RegisterForm(forms.Form):
 	first_name = forms.CharField(label = 'Nombres', widget = forms.TextInput(attrs = {'required': True, 'placeholder': 'Ingrese su nombre'}))
