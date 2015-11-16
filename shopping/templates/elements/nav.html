@@ -16,7 +16,7 @@
 	<div class="cart">
 		{% if user.is_authenticated %}
 			<p>Bienvenido {{ user.first_name }}.</p>
-			<p><a href="{% url 'my_product' %}">Tienes {{ product_temp.count }} producto(s) en Lista</a></p>
+			<p><a href="{% url 'my_product' %}">Ver mis productos en Lista</a></p>
 		{% endif %}
 	</div>
 	<div class="clear"></div>

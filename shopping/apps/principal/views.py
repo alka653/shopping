@@ -10,7 +10,7 @@ def home(request):
 	categories = Type_product.objects.all()
 	products = Product.objects.all().order_by('-id')[:8:1]
 	title = 'Bienvenido'
-	return render(request, 'shop/home.html', {'title': title, 'product_temp': '', 'categories': categories, 'products': products})
+	return render(request, 'shop/home.html', {'title': title, 'categories': categories, 'products': products})
 
 def login_user(request):
 	title = 'Ingresar'
@@ -50,10 +50,9 @@ def logout_user(request):
 
 def list_producto(request, category_id):
 	title = 'Lista de producto'
-	product_temp = Shop_temporal.objects.filter(user = request.user)
 	category = Type_product.objects.get(pk = category_id)
 	products = Product.objects.filter(type_product = category_id)
-	return render(request, 'shop/list_product.html', {'product_temp': product_temp, 'products': products, 'category': category, 'title': title})
+	return render(request, 'shop/list_product.html', {'products': products, 'category': category, 'title': title})
 
 @login_required(login_url = '/Login')
 def add_producto(request, product_id):
@@ -64,10 +63,9 @@ def add_producto(request, product_id):
 
 @login_required(login_url = '/Login')
 def my_product(request):
-	product_temp = Shop_temporal.objects.filter(user = request.user)
 	title = 'Mi lista de productos'
 	shop_temporal = Shop_temporal.objects.filter(user = request.user)
-	return render(request, 'shop/my_list.html', {'product_temp': product_temp, 'shop_temporal': shop_temporal, 'title': title})
+	return render(request, 'shop/my_list.html', {'shop_temporal': shop_temporal, 'title': title})
 
 @login_required(login_url = '/Login')
 def delete_product(request, shop):
@@ -89,6 +87,5 @@ def shopping(request):
 @login_required(login_url = '/Login')
 def my_shop(request):
 	title = 'Mi lista de productos'
-	product_temp = Shop_temporal.objects.filter(user = request.user)
 	shop = Shop_desc.objects.filter(user = request.user)
-	return render(request, 'shop/my_shop.html', {'shop': shop, 'product_temp': product_temp, 'title': title})
+	return render(request, 'shop/my_shop.html', {'shop': shop, 'title': title})
