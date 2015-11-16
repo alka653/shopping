@@ -8,10 +8,9 @@ from .forms import *
 
 def home(request):
 	categories = Type_product.objects.all()
-	product_temp = Shop_temporal.objects.filter(user = request.user)
 	products = Product.objects.all().order_by('-id')[:8:1]
 	title = 'Bienvenido'
-	return render(request, 'shop/home.html', {'title': title, 'product_temp': product_temp, 'categories': categories, 'products': products})
+	return render(request, 'shop/home.html', {'title': title, 'product_temp': '', 'categories': categories, 'products': products})
 
 def login_user(request):
 	title = 'Ingresar'
