@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content_nav %}
+	{% include 'elements/nav.html' %}
+	<div class="header_slide">
+		<div class="header_bottom_left">
+			<div class="categories">
+				<ul>
+					<h3>Categorías</h3>
+					{% for category in categories %}
+						<li><a href="{% url 'list_producto' category.id %}">{{ category.name }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="header_bottom_right">
+			<div class="slider">
+				<div id="slider">
+					<div id="mover">
+						<div id="slide-1" class="slide">
+							<div class="slider-text">
+								<h1>Gran precio</h1>
+								<h2>Obtén 20% menos</h2>
+								<div class="features_list">
+									<h4>En todos los productos de sonido para el hogar</h4>
+								</div>
+								<a href="#l" class="button">Comprar Ahora</a>
+							</div>
+							<div class="slider-img">
+								<a href="preview.html"><img src="{% static 'img/slide-1-image.png' %}" alt="learn more" /></a>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="slide">
+							<div class="slider-text">
+								<h1>Especial</h1>
+								<h2>Ahorra 40% en productos</h2>
+								<div class="features_list">
+									<h4>De entretenimiento familiar</h4>
+								</div>
+								<a href="#" class="button">Comprar Ahora</a>
+							</div>
+							<div class="slider-img">
+								<a href="preview.html"><img src="{% static 'img/slide-3-image.jpg' %}" alt="learn more" /></a>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="slide">
+							<div class="slider-img">
+								<a href="preview.html"><img src="{% static 'img/slide-2-image.jpg' %}" alt="learn more" /></a>
+							</div>
+							<div class="slider-text">
+								<h1>Nuevos productos</h1>
+								<div class="features_list">
+									<h4>Conozca nuestra nueva y memorable línea de tecnología</h4>
+								</div>
+								<a href="#" class="button">Llévame</a>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+{% endblock content_nav %}
+
+{% block content %}
+	<div class="content">
+		<div class="content_top">
+			<div class="heading">
+				<h3>Nuevos Productos</h3>
+			</div>
+			<div class="see">
+				<p><a href="#">Ver Todos los Productos</a></p>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="section group">
+			{% for product in products %}
+			<div class="grid_1_of_4 images_1_of_4">
+				<a href="#"><img src="{% static product.photo %}" alt="" /></a>
+				<h2>{{ product.name }}</h2>
+				<div class="price-details">
+					<div class="price-number">
+						<p><span class="rupees">{{ product.price }}</span></p>
+					</div>
+					<div class="add-cart">								
+						<h4><a href="{% url 'add_producto' product.pk %}">Agregar</a></h4>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+{% endblock content %}

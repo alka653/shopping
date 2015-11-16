@@ -1,0 +1,32 @@
+<div class="headertop_desc">
+	<div class="account_desc">
+		<ul>
+			{% if user.is_authenticated %}
+			<li><a href="{% url 'logout_user' %}">Salir</a></li>
+			<li><a href="{% url 'my_shop' %}">Mis compras</a></li>
+			{% else %}
+			<li><a href="{% url 'registry' %}">Registrate</a></li>
+			<li><a href="{% url 'login_user' %}">Ingresa</a></li>
+			{% endif %}
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="header_top">
+	<div class="cart">
+		{% if user.is_authenticated %}
+			<p>Bienvenido {{ user.first_name }}.</p>
+			<p><a href="{% url 'my_product' %}">Tienes {{ product_temp.count }} producto(s) en Lista</a></p>
+		{% endif %}
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="header_bottom">
+	<div class="menu">
+		<ul>
+			<li class="active"><a href="{% url 'home' %}">Inicio</a></li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>

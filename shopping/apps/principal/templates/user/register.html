@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content_nav %}
+	{% include 'elements/nav.html' %}
+{% endblock content_nav %}
+
+{% block content %}
+	<div class="content txt-center">
+		<h2>Ingresa todos tus datos</h2>
+		{% for message in messages %}
+			<div class="alert-box {{ message.tags }}">{{ message }}</div>
+		{% endfor %}
+		<form action="{% url 'registry' %}" method="POST">
+			{% csrf_token %}
+			{% for form in forms %}
+			{{ form }}
+			{% endfor %}
+			<br>
+			<input type="submit" value="Registrarme" class="button" />
+		</form>
+	</div>
+{% endblock content %}

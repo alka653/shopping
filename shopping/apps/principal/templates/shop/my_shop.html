@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content_nav %}
+	{% include 'elements/nav.html' %}
+{% endblock content_nav %}
+
+{% block content %}
+	<div class="content">
+		<div class="content_top">
+			<div class="heading">
+				<h3>Mi Lista de Compras</h3>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="section group">
+			{% if shop %}
+				{% for shopping in shop %}
+				<div class="grid_1_of_4 images_1_of_4">
+					<a href="#"><img src="{% static shopping.product.photo %}" alt="" /></a>
+					<h2>{{ shopping.product.name }}</h2>
+					<div class="price-details">
+						<div class="price-number">
+							<p><span class="rupees">{{ shopping.product.price }}</span></p>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				{% endfor %}
+			{% else %}
+				<div class="content txt-center">
+					<h1>No tienes productos comprados en lista</h1>
+				</div>
+			{% endif %}
+		</div>
+{% endblock content %}
